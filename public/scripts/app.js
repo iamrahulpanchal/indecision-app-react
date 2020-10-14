@@ -1,6 +1,6 @@
-console.log(`Running`);
+"use strict";
 
-const template = <p>This is JSX from App.js</p>;
-const appRoot = document.querySelector('#app');
-
+console.log("Running");
+var template = /*#__PURE__*/React.createElement("h1", null, "Indecision App");
+var appRoot = document.querySelector('#app');
 ReactDOM.render(template, appRoot);
