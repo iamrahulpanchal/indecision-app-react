@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Rahul Panchal",
   "license": "MIT",
+  "scripts": {
+      "build": "babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react --watch"
+  },
   "dependencies": {
     "@babel/cli": "^7.12.0",
     "@babel/core": "^7.12.0",
