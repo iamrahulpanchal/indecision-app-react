@@ -1,12 +1,19 @@
 console.log(`Running`);
 
 const title = 'Indecision App';
-const para = 'This is a Para';
+
+const user = {
+    name: 'Rahul',
+    age: 24,
+    location: 'Bhayandar'
+}
 
 const template = (
     <div>
         <h1>{`${title}`.toUpperCase()}</h1>
-        <p>{para}</p>
+        <p>{user.name}</p>
+        <p>{user.age}</p>
+        <p>{user.location}</p>
         <ol>
             <li>Item 1</li>
             <li>Item 2</li>
