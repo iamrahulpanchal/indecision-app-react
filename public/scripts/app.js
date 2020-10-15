@@ -3,30 +3,38 @@
 console.log("Running");
 var app = {
   title: 'Indecision App',
-  subtitle: 'Test',
-  options: ['One', 'Two', 'Three']
-};
-var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), /*#__PURE__*/React.createElement("p", null, app.subtitle && app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? 'Here Are Your Options' : 'No Options'), /*#__PURE__*/React.createElement("ol", null, /*#__PURE__*/React.createElement("li", null, "Item 1"), /*#__PURE__*/React.createElement("li", null, "Item 2"), /*#__PURE__*/React.createElement("li", null, "Item 3")));
-var count = 0;
-
-var addOne = function addOne() {
-  console.log("Add One");
+  subtitle: 'Put Your Life in the Hands of a Computer!',
+  options: []
 };
 
-var subOne = function subOne() {
-  console.log("Sub One");
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    renderApp();
+  }
 };
 
-var reset = function reset() {
-  console.log("Reset");
+var removeAllOptions = function removeAllOptions() {
+  app.options = [];
+  renderApp();
 };
 
-var templateTwo = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count : ", count), /*#__PURE__*/React.createElement("button", {
-  onClick: addOne
-}, "+1"), /*#__PURE__*/React.createElement("button", {
-  onClick: subOne
-}, "-1"), /*#__PURE__*/React.createElement("button", {
-  onClick: reset
-}, "Reset"));
 var appRoot = document.querySelector('#app');
-ReactDOM.render(templateTwo, appRoot);
+
+var renderApp = function renderApp() {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), /*#__PURE__*/React.createElement("p", null, app.subtitle && app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? 'Here Are Your Options' : 'No Options'), /*#__PURE__*/React.createElement("p", null, app.options.length), /*#__PURE__*/React.createElement("button", {
+    onClick: removeAllOptions
+  }, "Remove All"), /*#__PURE__*/React.createElement("ol", null, /*#__PURE__*/React.createElement("li", null, "Item 1"), /*#__PURE__*/React.createElement("li", null, "Item 2"), /*#__PURE__*/React.createElement("li", null, "Item 3")), /*#__PURE__*/React.createElement("form", {
+    onSubmit: onFormSubmit
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "option"
+  }), /*#__PURE__*/React.createElement("button", null, "Add Option")));
+  ReactDOM.render(template, appRoot);
+};
+
+renderApp();

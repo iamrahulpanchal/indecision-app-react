@@ -2,46 +2,51 @@ console.log(`Running`);
 
 const app = {
     title: 'Indecision App',
-    subtitle: 'Test',
-    options: ['One', 'Two', 'Three']
+    subtitle: 'Put Your Life in the Hands of a Computer!',
+    options: []
+};
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+    const option = e.target.elements.option.value;
+    if(option){
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderApp();
+    }
+};
+
+const removeAllOptions = () => {
+    app.options = [];
+    renderApp();
 }
-
-const template = (
-    <div>
-        <h1>{app.title}</h1>
-        <p>{app.subtitle && app.subtitle}</p>
-        <p>{app.options.length > 0 ? 'Here Are Your Options' : 'No Options'}</p>
-        <ol>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-        </ol>
-    </div>
-);
-
-let count = 0;
-
-const addOne = () => {
-    console.log(`Add One`);
-}
-
-const subOne = () => {
-    console.log(`Sub One`);
-}
-
-const reset = () => {
-    console.log(`Reset`);
-}
-
-const templateTwo = (
-    <div>
-        <h1>Count : {count}</h1>
-        <button onClick={addOne}>+1</button>
-        <button onClick={subOne}>-1</button>
-        <button onClick={reset}>Reset</button>
-    </div>
-);
 
 const appRoot = document.querySelector('#app');
 
-ReactDOM.render(templateTwo, appRoot);
+const renderApp = () => {
+    const template = (
+        <div>
+            <h1>{app.title}</h1>
+            <p>{app.subtitle && app.subtitle}</p>
+            <p>{app.options.length > 0 ? 'Here Are Your Options' : 'No Options'}</p>
+            <p>{app.options.length}</p>
+            <button onClick={removeAllOptions}>Remove All</button>
+            <ol>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+            </form>
+        </div>
+    );
+
+    ReactDOM.render(template, appRoot);
+}
+
+renderApp();
+
+
+
