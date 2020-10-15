@@ -1,19 +1,16 @@
 console.log(`Running`);
 
-const title = 'Indecision App';
-
-const user = {
-    name: 'Rahul',
-    age: 24,
-    location: 'Bhayandar'
+const app = {
+    title: 'Indecision App',
+    subtitle: 'Test',
+    options: ['One', 'Two', 'Three']
 }
 
 const template = (
     <div>
-        <h1>{`${title}`.toUpperCase()}</h1>
-        <p>{user.name}</p>
-        <p>{user.age}</p>
-        <p>{user.location}</p>
+        <h1>{app.title}</h1>
+        <p>{app.subtitle && app.subtitle}</p>
+        <p>{app.options.length > 0 ? 'Here Are Your Options' : 'No Options'}</p>
         <ol>
             <li>Item 1</li>
             <li>Item 2</li>
