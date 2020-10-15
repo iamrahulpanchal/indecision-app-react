@@ -23,10 +23,19 @@ var removeAllOptions = function removeAllOptions() {
   renderApp();
 };
 
+var pickOption = function pickOption() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 var appRoot = document.querySelector('#app');
 
 var renderApp = function renderApp() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), /*#__PURE__*/React.createElement("p", null, app.subtitle && app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? 'Here Are Your Options' : 'No Options'), /*#__PURE__*/React.createElement("p", null, app.options.length), /*#__PURE__*/React.createElement("button", {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), /*#__PURE__*/React.createElement("p", null, app.subtitle && app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? 'Here Are Your Options' : 'No Options'), /*#__PURE__*/React.createElement("button", {
+    disabled: app.options.length === 0 ? true : false,
+    onClick: pickOption
+  }, "What Should I Do?"), /*#__PURE__*/React.createElement("button", {
     onClick: removeAllOptions
   }, "Remove All"), /*#__PURE__*/React.createElement("ol", null, app.options.map(function (opt) {
     return /*#__PURE__*/React.createElement("li", {
