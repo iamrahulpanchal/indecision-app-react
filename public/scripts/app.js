@@ -27,23 +27,41 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(IndecisionApp);
 
-  function IndecisionApp() {
+  function IndecisionApp(props) {
+    var _this;
+
     _classCallCheck(this, IndecisionApp);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.deleteAllOptions = _this.deleteAllOptions.bind(_assertThisInitialized(_this));
+    _this.state = {
+      options: ['11', '2', '3']
+    };
+    return _this;
   }
 
   _createClass(IndecisionApp, [{
+    key: "deleteAllOptions",
+    value: function deleteAllOptions() {
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var title = 'Indecision App';
       var subtitle = 'Put Your Life in the Hands of a Computer!';
-      var options = ['1', '2', '3'];
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
         title: title,
         subtitle: subtitle
-      }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, {
-        options: options
+      }), /*#__PURE__*/React.createElement(Action, {
+        hasOptions: this.state.options.length > 0
+      }), /*#__PURE__*/React.createElement(Options, {
+        options: this.state.options,
+        deleteAllOptions: this.deleteAllOptions
       }), /*#__PURE__*/React.createElement(AddOption, null));
     }
   }]);
@@ -90,7 +108,8 @@ var Action = /*#__PURE__*/function (_React$Component3) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-        onClick: this.handlePick
+        onClick: this.handlePick,
+        disabled: !this.props.hasOptions
       }, "What Should I Do?"));
     }
   }]);
@@ -103,26 +122,17 @@ var Options = /*#__PURE__*/function (_React$Component4) {
 
   var _super4 = _createSuper(Options);
 
-  function Options(props) {
-    var _this;
-
+  function Options() {
     _classCallCheck(this, Options);
 
-    _this = _super4.call(this, props);
-    _this.removeAll = _this.removeAll.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super4.apply(this, arguments);
   }
 
   _createClass(Options, [{
-    key: "removeAll",
-    value: function removeAll() {
-      console.log(this.props.options);
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-        onClick: this.removeAll
+        onClick: this.props.deleteAllOptions
       }, "Remove All"), this.props.options.map(function (opt) {
         return /*#__PURE__*/React.createElement(Option, {
           key: opt,

@@ -1,14 +1,32 @@
 class IndecisionApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.deleteAllOptions = this.deleteAllOptions.bind(this);
+        this.state = {
+            options: ['11', '2', '3']
+        }
+    }
+
+    deleteAllOptions() {
+        this.setState(() => {
+            return {
+                options: []
+            } 
+        });
+    }
+
     render() {
         const title = 'Indecision App';
         const subtitle = 'Put Your Life in the Hands of a Computer!';
-        const options = ['1', '2', '3'];
 
         return (
             <div>
                 <Header title={title} subtitle={subtitle} />
-                <Action />
-                <Options options={options} />
+                <Action hasOptions={this.state.options.length > 0} />
+                <Options 
+                    options={this.state.options}
+                    deleteAllOptions={this.deleteAllOptions}
+                />
                 <AddOption />
             </div>
         )
@@ -34,26 +52,22 @@ class Action extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handlePick}>What Should I Do?</button>
+                <button 
+                    onClick={this.handlePick}
+                    disabled={!this.props.hasOptions}
+                >
+                    What Should I Do?
+                </button>
             </div>
         )
     }
 }
 
 class Options extends React.Component {
-    constructor(props) {
-        super(props);
-        this.removeAll = this.removeAll.bind(this);
-    }
-
-    removeAll() {
-        console.log(this.props.options);    
-    }
-
     render() {
         return (
             <div>
-                <button onClick={this.removeAll}>Remove All</button>
+                <button onClick={this.props.deleteAllOptions}>Remove All</button>
                 {
                     this.props.options.map((opt) => {
                         return <Option key={opt} option={opt} />
