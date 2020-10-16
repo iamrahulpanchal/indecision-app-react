@@ -99,22 +99,43 @@ var Options = /*#__PURE__*/function (_React$Component4) {
   _createClass(Options, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Options"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Options"), /*#__PURE__*/React.createElement(Option, null));
     }
   }]);
 
   return Options;
 }(React.Component);
 
-var AddOption = /*#__PURE__*/function (_React$Component5) {
-  _inherits(AddOption, _React$Component5);
+var Option = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Option, _React$Component5);
 
-  var _super5 = _createSuper(AddOption);
+  var _super5 = _createSuper(Option);
+
+  function Option() {
+    _classCallCheck(this, Option);
+
+    return _super5.apply(this, arguments);
+  }
+
+  _createClass(Option, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Option Array"));
+    }
+  }]);
+
+  return Option;
+}(React.Component);
+
+var AddOption = /*#__PURE__*/function (_React$Component6) {
+  _inherits(AddOption, _React$Component6);
+
+  var _super6 = _createSuper(AddOption);
 
   function AddOption() {
     _classCallCheck(this, AddOption);
 
-    return _super5.apply(this, arguments);
+    return _super6.apply(this, arguments);
   }
 
   _createClass(AddOption, [{
