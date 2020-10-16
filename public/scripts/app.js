@@ -38,10 +38,13 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var title = 'Indecision App';
       var subtitle = 'Put Your Life in the Hands of a Computer!';
+      var options = ['1', '2', '3'];
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
         title: title,
         subtitle: subtitle
-      }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, null), /*#__PURE__*/React.createElement(AddOption, null));
+      }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, {
+        options: options
+      }), /*#__PURE__*/React.createElement(AddOption, null));
     }
   }]);
 
@@ -104,7 +107,12 @@ var Options = /*#__PURE__*/function (_React$Component4) {
   _createClass(Options, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Options"), /*#__PURE__*/React.createElement(Option, null));
+      return /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (opt) {
+        return /*#__PURE__*/React.createElement(Option, {
+          key: opt,
+          option: opt
+        });
+      }));
     }
   }]);
 
@@ -125,7 +133,7 @@ var Option = /*#__PURE__*/function (_React$Component5) {
   _createClass(Option, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Option Array"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, this.props.option));
     }
   }]);
 

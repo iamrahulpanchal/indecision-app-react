@@ -2,11 +2,13 @@ class IndecisionApp extends React.Component {
     render() {
         const title = 'Indecision App';
         const subtitle = 'Put Your Life in the Hands of a Computer!';
+        const options = ['1', '2', '3'];
+
         return (
             <div>
                 <Header title={title} subtitle={subtitle} />
                 <Action />
-                <Options />
+                <Options options={options} />
                 <AddOption />
             </div>
         )
@@ -38,8 +40,11 @@ class Options extends React.Component {
     render() {
         return (
             <div>
-                <p>Options</p>
-                <Option />
+                {
+                    this.props.options.map((opt) => {
+                        return <Option key={opt} option={opt} />
+                    })
+                }
             </div>
         )
     }
@@ -49,7 +54,7 @@ class Option extends React.Component {
     render() {
         return (
             <div>
-                <p>Option Array</p>
+                <p>{this.props.option}</p>
             </div>
         )
     }
