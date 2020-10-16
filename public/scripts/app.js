@@ -84,9 +84,14 @@ var Action = /*#__PURE__*/function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: "handlePick",
+    value: function handlePick() {}
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "What Should I Do?"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+        onClick: this.handlePick
+      }, "What Should I Do?"));
     }
   }]);
 
@@ -105,9 +110,14 @@ var Options = /*#__PURE__*/function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: "removeAll",
+    value: function removeAll() {}
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (opt) {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+        onClick: this.removeAll
+      }, "Remove All"), this.props.options.map(function (opt) {
         return /*#__PURE__*/React.createElement(Option, {
           key: opt,
           option: opt
@@ -152,9 +162,25 @@ var AddOption = /*#__PURE__*/function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
+    key: "addOption",
+    value: function addOption(e) {
+      e.preventDefault();
+      var option = e.target.elements.option.value.trim();
+
+      if (option) {
+        alert(option);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Add Option"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("form", {
+        onSubmit: this.addOption
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "text",
+        name: "option",
+        required: true
+      }), /*#__PURE__*/React.createElement("button", null, "Submit")));
     }
   }]);
 
