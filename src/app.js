@@ -3,8 +3,9 @@ class IndecisionApp extends React.Component {
         super(props);
         this.deleteAllOptions = this.deleteAllOptions.bind(this);
         this.pickOption = this.pickOption.bind(this);
+        this.addOption = this.addOption.bind(this);
         this.state = {
-            options: ['11', '2', '3']
+            options: []
         }
     }
 
@@ -22,13 +23,30 @@ class IndecisionApp extends React.Component {
         alert(option);
     }
 
+    addOption(option) {
+        if(!option) {
+            return 'Enter Valid Option'
+        } else if (this.state.options.indexOf(option) > -1) {
+            return `Option Already Added!`
+        }
+
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.concat(option)
+            }
+        });
+    }
+
     render() {
         const title = 'Indecision App';
         const subtitle = 'Put Your Life in the Hands of a Computer!';
 
         return (
             <div>
-                <Header title={title} subtitle={subtitle} />
+                <Header 
+                    title={title} 
+                    subtitle={subtitle} 
+                />
                 <Action 
                     hasOptions={this.state.options.length > 0}
                     pickOption={this.pickOption}
@@ -37,7 +55,9 @@ class IndecisionApp extends React.Component {
                     options={this.state.options}
                     deleteAllOptions={this.deleteAllOptions}
                 />
-                <AddOption />
+                <AddOption
+                    addOption={this.addOption}
+                />
             </div>
         )
     }
@@ -95,17 +115,31 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+    constructor(props) {
+        super(props);
+        this.addOption = this.addOption.bind(this);
+        this.state = {
+            error: undefined
+        };
+    }
+
     addOption(e) {
         e.preventDefault();
+
         const option = e.target.elements.option.value.trim();
-        if(option){
-            alert(option);
-        }
+        const error = this.props.addOption(option);
+
+        this.setState(() => {
+            return {
+                error: error
+            }
+        });
     }
 
     render() {
         return (
             <div>
+                <p>{this.state.error}</p>
                 <form onSubmit={this.addOption}>
                     <input type="text" name="option" required />
                     <button>Submit</button>
