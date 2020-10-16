@@ -37,8 +37,10 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var title = 'Indecision App';
+      var subtitle = 'Put Your Life in the Hands of a Computer!';
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
-        title: title
+        title: title,
+        subtitle: subtitle
       }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, null), /*#__PURE__*/React.createElement(AddOption, null));
     }
   }]);
@@ -60,7 +62,7 @@ var Header = /*#__PURE__*/function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("h2", null, "Put Your Life in the Hands of a Computer!"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("h2", null, this.props.subtitle));
     }
   }]);
 
