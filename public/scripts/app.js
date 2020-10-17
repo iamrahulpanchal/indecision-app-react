@@ -37,7 +37,7 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     _this.pickOption = _this.pickOption.bind(_assertThisInitialized(_this));
     _this.addOption = _this.addOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: []
+      options: props.options
     };
     return _this;
   }
@@ -93,6 +93,10 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
 
   return IndecisionApp;
 }(React.Component);
+
+IndecisionApp.defaultProps = {
+  options: []
+};
 
 var Header = function Header(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), props.subtitle && /*#__PURE__*/React.createElement("h2", null, props.subtitle));
