@@ -4,6 +4,7 @@ class IndecisionApp extends React.Component {
         this.deleteAllOptions = this.deleteAllOptions.bind(this);
         this.pickOption = this.pickOption.bind(this);
         this.addOption = this.addOption.bind(this);
+        this.deleteOption = this.deleteOption.bind(this);
         this.state = {
             options: props.options
         }
@@ -15,6 +16,16 @@ class IndecisionApp extends React.Component {
                 options: []
             } 
         });
+    }
+
+    deleteOption(option) {
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.filter((opt) => {
+                    return option.toLowerCase() !== opt.toLowerCase();
+                })
+            }
+        })
     }
 
     pickOption() {
@@ -52,6 +63,7 @@ class IndecisionApp extends React.Component {
                 <Options 
                     options={this.state.options}
                     deleteAllOptions={this.deleteAllOptions}
+                    deleteOption={this.deleteOption}
                 />
                 <AddOption
                     addOption={this.addOption}
@@ -97,7 +109,13 @@ const Options = (props) => {
             <button onClick={props.deleteAllOptions}>Remove All</button>
             {
                 props.options.map((opt) => {
-                    return <Option key={opt} option={opt} />
+                    return (
+                        <Option 
+                            key={opt} 
+                            option={opt}
+                            deleteOption={props.deleteOption}
+                        />
+                    );
                 })
             }
         </div>
@@ -108,6 +126,12 @@ const Option = (props) => {
     return (
         <div>
             <p>{props.option}</p>
+            <button 
+                onClick={() => {
+                    props.deleteOption(props.option)
+                }}
+            >
+                Remove</button>
         </div>
     )
 }
