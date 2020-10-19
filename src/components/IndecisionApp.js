@@ -5,17 +5,48 @@ import Header from './Header';
 import Options from './Options';
 
 class IndecisionApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteAllOptions = this.deleteAllOptions.bind(this);
-        this.pickOption = this.pickOption.bind(this);
-        this.addOption = this.addOption.bind(this);
-        this.deleteOption = this.deleteOption.bind(this);
-        this.state = {
-            options: []
-        }
+    state = {
+        options: []
     }
 
+    deleteAllOptions = () => {
+        this.setState(() => {
+            return {
+                options: []
+            } 
+        });
+    }
+
+    deleteOption = (option) => {
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.filter((opt) => {
+                    return option.toLowerCase() !== opt.toLowerCase();
+                })
+            }
+        })
+    }
+
+    pickOption = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        alert(option);
+    }
+
+    addOption = (option) => {
+        if(!option) {
+            return 'Enter Valid Option'
+        } else if (this.state.options.indexOf(option) > -1) {
+            return `Option Already Added!`
+        }
+
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.concat(option)
+            }
+        });
+    }
+    
     componentDidMount() {
         try {
             const json = localStorage.getItem('indecision');
@@ -39,44 +70,6 @@ class IndecisionApp extends React.Component {
             localStorage.setItem('indecision', json);
             console.log(`Saving Data...`);
         }
-    }
-
-    deleteAllOptions() {
-        this.setState(() => {
-            return {
-                options: []
-            } 
-        });
-    }
-
-    deleteOption(option) {
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.filter((opt) => {
-                    return option.toLowerCase() !== opt.toLowerCase();
-                })
-            }
-        })
-    }
-
-    pickOption() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        alert(option);
-    }
-
-    addOption(option) {
-        if(!option) {
-            return 'Enter Valid Option'
-        } else if (this.state.options.indexOf(option) > -1) {
-            return `Option Already Added!`
-        }
-
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.concat(option)
-            }
-        });
     }
 
     render() {
