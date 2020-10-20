@@ -100,13 +100,13 @@ class IndecisionApp extends React.Component {
                         pickOption={this.pickOption}
                     />
                     <div className='widget'>
+                        <AddOption
+                            addOption={this.addOption}
+                        />
                         <Options 
                             options={this.state.options}
                             deleteAllOptions={this.deleteAllOptions}
                             deleteOption={this.deleteOption}
-                        />
-                        <AddOption
-                            addOption={this.addOption}
                         />
                     </div>
                 </div>
