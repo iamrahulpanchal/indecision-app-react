@@ -1,12 +1,14 @@
 .add-option-error {
     color: $off-white;
     font-style: italic;
-    margin-top: 1.6rem;
-    padding: 0 $m-size;
+    padding: $m-size $m-size;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .add-option {
     display: flex;
+    flex-direction: column;
     padding: $m-size;
 }
 
@@ -16,5 +18,15 @@
     padding: $s-size;
     font-size: $m-size;
     border-radius: 3px;
-    margin-right: 7px;
+    margin: 0 0 $s-size 0;
+}
+
+@media (min-width: 45rem) {
+    .add-option {
+        flex-direction: row;
+    }
+
+    .add-option__input {
+        margin: 0 $s-size 0 0;
+    }
 }
