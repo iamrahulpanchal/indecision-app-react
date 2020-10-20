@@ -6,8 +6,11 @@
 }
 
 .option__text {
+    word-break: break-all;
     margin: .5rem;
     color: #fff;
+    text-align: justify;
     font-weight: 500;
     font-size: 1.8rem;
+    margin-right: $l-size;
 }
