@@ -13,3 +13,18 @@
 .big-button:disabled {
     opacity: .5;
 }
+
+.button {
+    background-color: $purple;
+    border: 1px solid $purple;
+    color: white;
+    font-weight: 500;
+    padding: $s-size;
+}
+
+.button--link {
+    background-color: unset;
+    border: none;
+    color: $off-white;
+    padding: 0;
+}
